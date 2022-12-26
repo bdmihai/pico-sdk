@@ -25,27 +25,30 @@
  |                                                                            |
  |___________________________________________________________________________*/
 
-Project {
-    references: [
-        'pico_base/pico_base.qbs',
-        'pico_platform/pico_platform.qbs',
-        'pico_bootrom/pico_bootrom.qbs',
-        'pico_sync/pico_sync.qbs',
-        'pico_time/pico_time.qbs',
-        'pico_util/pico_util.qbs',
-        'pico_runtime/pico_runtime.qbs',
-        'pico_malloc/pico_malloc.qbs',
-        'pico_mem_ops/pico_mem_ops.qbs',
-        'hardware_gpio/hardware_gpio.qbs',
-        'hardware_base/hardware_base.qbs',
-        'hardware_irq/hardware_irq.qbs',
-        'hardware_claim/hardware_claim.qbs',
-        'hardware_sync/hardware_sync.qbs',
-        'hardware_timer/hardware_timer.qbs',
-        'hardware_clocks/hardware_clocks.qbs',
-        'hardware_watchdog/hardware_watchdog.qbs',
-        'hardware_xosc/hardware_xosc.qbs',
-        'hardware_resets/hardware_resets.qbs',
-        'hardware_pll/hardware_pll.qbs'
+import '../sdk-product.qbs' as SdkProduct
+
+SdkProduct {
+    name: 'pico_malloc'
+
+    rp.includePaths: [ 
+        'include',
+        '../pico_base/include',
+        '../pico_platform/include',
+        '../pico_sync/include',
+        '../pico_time/include',
+        '../hardware_base/include',
+        '../hardware_sync/include',
+        '../hardware_timer/include'
     ]
+
+    rp.defines: [ 'PICO_USE_MALLOC_MUTEX' ]
+
+    files: [
+        'include/**/*.h',
+        '*.c'
+    ]
+
+    Export {
+        rp.linkerFlags: [ '-Wl,--wrap=malloc', '-Wl,--wrap=calloc', '-Wl,--wrap=realloc', '-Wl,--wrap=free' ]
+    }
 }

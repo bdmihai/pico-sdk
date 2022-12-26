@@ -37,7 +37,7 @@ SdkProduct {
         '../pico_time/include',
         '../hardware_base/include',
         '../hardware_sync/include',
-        '../hardware_timer/include',
+        '../hardware_timer/include'
     ]
 
     files: [
