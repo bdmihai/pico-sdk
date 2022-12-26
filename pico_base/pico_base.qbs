@@ -25,25 +25,28 @@
  |                                                                            |
  |___________________________________________________________________________*/
 
-Project {
-    references: [
-        'pico_base/pico_base.qbs',
-        'pico_platform/pico_platform.qbs',
-        'pico_bootrom/pico_bootrom.qbs',
-        'pico_sync/pico_sync.qbs',
-        'pico_time/pico_time.qbs',
-        'pico_util/pico_util.qbs',
-        'pico_runtime/pico_runtime.qbs',
-        'hardware_gpio/hardware_gpio.qbs',
-        'hardware_base/hardware_base.qbs',
-        'hardware_irq/hardware_irq.qbs',
-        'hardware_claim/hardware_claim.qbs',
-        'hardware_sync/hardware_sync.qbs',
-        'hardware_timer/hardware_timer.qbs',
-        'hardware_clocks/hardware_clocks.qbs',
-        'hardware_watchdog/hardware_watchdog.qbs',
-        'hardware_xosc/hardware_xosc.qbs',
-        'hardware_resets/hardware_resets.qbs',
-        'hardware_pll/hardware_pll.qbs'
+import qbs.FileInfo
+
+Product {
+    name: 'pico_base'
+    type: 'lib'
+    
+    Depends { name: 'rp' }
+    Depends { name: 'rp2040' }
+
+    rp.includePaths: [ 
+        'include'
     ]
+
+    files: [
+        'include/**/*.h',
+    ]
+
+    Export {
+        Depends { name: 'rp' }
+        Depends { name: 'rp2040' }
+
+        rp.includePaths: [ FileInfo.joinPaths(exportingProduct.sourceDirectory, "/include") ]
+        rp.libraryPaths: [ exportingProduct.destinationDirectory ]
+    }
 }
