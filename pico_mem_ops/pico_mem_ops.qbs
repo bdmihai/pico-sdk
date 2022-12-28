@@ -37,7 +37,9 @@ SdkProduct {
         '../pico_bootrom/include'
     ]
 
-    rp.defines: [ 'PICO_MEM_IN_RAM' ]
+    rp.defines: [ 
+        //'PICO_MEM_IN_RAM' 
+    ]
 
     files: [
         'include/**/*.h',

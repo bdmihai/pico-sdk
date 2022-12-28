@@ -21,35 +21,41 @@
  | THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                 |
  |____________________________________________________________________________|
  |                                                                            |
- |  Author: Mihai Baneu                           Last modified: 16.Dec.2022  |
+ |  Author: Mihai Baneu                           Last modified: 28.Dec.2022  |
  |                                                                            |
  |___________________________________________________________________________*/
 
 import '../sdk-product.qbs' as SdkProduct
 
 SdkProduct {
-    name: 'pico_printf'
+    name: 'pico_divider'
 
     rp.includePaths: [ 
-        'include',
         '../pico_base/include',
         '../pico_platform/include',
+        '../hardware_base/include',
+        '../hardware_divider/include'
+    ]
+
+    rp.defines: [
+        //'PICO_DIVIDER_IN_RAM',
+        //'PICO_DIVIDER_CALL_IDIV0',
+        //'PICO_DIVIDER_CALL_LDIV0'
+        //'PICO_DIVIDER_DISABLE_INTERRUPTS'
     ]
 
     files: [
-        'include/**/*.h',
-        '*.c'
-    ]
-
-    excludeFiles: [
-        'printf_none.S'
+        '*.S'
     ]
 
     Export {
         rp.linkerFlags: [ 
-            '-Wl,--wrap=sprintf',
-            '-Wl,--wrap=snprintf',
-            '-Wl,--wrap=vsnprintf',
+            '-Wl,--wrap=__aeabi_idiv',
+            '-Wl,--wrap=__aeabi_idivmod',
+            '-Wl,--wrap=__aeabi_ldivmod',
+            '-Wl,--wrap=__aeabi_uidiv',
+            '-Wl,--wrap=__aeabi_uidivmod',
+            '-Wl,--wrap=__aeabi_uldivmod'
         ]
     }
 }

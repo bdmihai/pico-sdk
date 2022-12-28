@@ -21,35 +21,31 @@
  | THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                 |
  |____________________________________________________________________________|
  |                                                                            |
- |  Author: Mihai Baneu                           Last modified: 16.Dec.2022  |
+ |  Author: Mihai Baneu                           Last modified: 28.Dec.2022  |
  |                                                                            |
  |___________________________________________________________________________*/
 
 import '../sdk-product.qbs' as SdkProduct
 
 SdkProduct {
-    name: 'pico_printf'
+    name: 'pico_int64_ops'
 
     rp.includePaths: [ 
-        'include',
         '../pico_base/include',
-        '../pico_platform/include',
+        '../pico_platform/include'
+    ]
+
+    rp.defines: [
+        //'PICO_INT64_OPS_IN_RAM'
     ]
 
     files: [
-        'include/**/*.h',
-        '*.c'
-    ]
-
-    excludeFiles: [
-        'printf_none.S'
+        '*.S'
     ]
 
     Export {
         rp.linkerFlags: [ 
-            '-Wl,--wrap=sprintf',
-            '-Wl,--wrap=snprintf',
-            '-Wl,--wrap=vsnprintf',
+            '-Wl,--wrap=__aeabi_lmul'
         ]
     }
 }

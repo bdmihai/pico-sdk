@@ -28,28 +28,18 @@
 import '../sdk-product.qbs' as SdkProduct
 
 SdkProduct {
-    name: 'pico_printf'
+    name: 'hardware_divider'
 
     rp.includePaths: [ 
         'include',
         '../pico_base/include',
         '../pico_platform/include',
+        '../hardware_base/include'
     ]
 
     files: [
         'include/**/*.h',
-        '*.c'
+        '*.c',
+        '*.S',
     ]
-
-    excludeFiles: [
-        'printf_none.S'
-    ]
-
-    Export {
-        rp.linkerFlags: [ 
-            '-Wl,--wrap=sprintf',
-            '-Wl,--wrap=snprintf',
-            '-Wl,--wrap=vsnprintf',
-        ]
-    }
 }

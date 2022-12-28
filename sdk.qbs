@@ -37,6 +37,11 @@ Project {
         'pico_malloc/pico_malloc.qbs',
         'pico_mem_ops/pico_mem_ops.qbs',
         'pico_printf/pico_printf.qbs',
+        'pico_bit_ops/pico_bit_ops.qbs',
+        'pico_int64_ops/pico_int64_ops.qbs',
+        'pico_divider/pico_divider.qbs',
+        'pico_float/pico_float.qbs',
+        'pico_double/pico_double.qbs',
         'hardware_gpio/hardware_gpio.qbs',
         'hardware_base/hardware_base.qbs',
         'hardware_irq/hardware_irq.qbs',
@@ -47,6 +52,7 @@ Project {
         'hardware_watchdog/hardware_watchdog.qbs',
         'hardware_xosc/hardware_xosc.qbs',
         'hardware_resets/hardware_resets.qbs',
-        'hardware_pll/hardware_pll.qbs'
+        'hardware_pll/hardware_pll.qbs',
+        'hardware_divider/hardware_divider.qbs'
     ]
 }

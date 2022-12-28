@@ -49,6 +49,11 @@ SdkProduct {
     ]
 
     Export {
-        rp.linkerFlags: [ '-Wl,--wrap=malloc', '-Wl,--wrap=calloc', '-Wl,--wrap=realloc', '-Wl,--wrap=free' ]
+        rp.linkerFlags: [ 
+            '-Wl,--wrap=malloc', 
+            '-Wl,--wrap=calloc', 
+            '-Wl,--wrap=realloc', 
+            '-Wl,--wrap=free' 
+        ]
     }
 }
