@@ -25,37 +25,25 @@
  |                                                                            |
  |___________________________________________________________________________*/
 
-Project {
-    references: [
-        'pico_base/pico_base.qbs',
-        'pico_platform/pico_platform.qbs',
-        'pico_bootrom/pico_bootrom.qbs',
-        'pico_sync/pico_sync.qbs',
-        'pico_time/pico_time.qbs',
-        'pico_util/pico_util.qbs',
-        'pico_runtime/pico_runtime.qbs',
-        'pico_malloc/pico_malloc.qbs',
-        'pico_mem_ops/pico_mem_ops.qbs',
-        'pico_printf/pico_printf.qbs',
-        'pico_bit_ops/pico_bit_ops.qbs',
-        'pico_int64_ops/pico_int64_ops.qbs',
-        'pico_divider/pico_divider.qbs',
-        'pico_float/pico_float.qbs',
-        'pico_double/pico_double.qbs',
-        'pico_unique_id/pico_unique_id.qbs',
-        'pico_binary_info/pico_binary_info.qbs',
-        'hardware_gpio/hardware_gpio.qbs',
-        'hardware_base/hardware_base.qbs',
-        'hardware_irq/hardware_irq.qbs',
-        'hardware_claim/hardware_claim.qbs',
-        'hardware_sync/hardware_sync.qbs',
-        'hardware_timer/hardware_timer.qbs',
-        'hardware_clocks/hardware_clocks.qbs',
-        'hardware_watchdog/hardware_watchdog.qbs',
-        'hardware_xosc/hardware_xosc.qbs',
-        'hardware_resets/hardware_resets.qbs',
-        'hardware_pll/hardware_pll.qbs',
-        'hardware_divider/hardware_divider.qbs',
-        'hardware_flash/hardware_flash.qbs'
+import '../sdk-product.qbs' as SdkProduct
+
+SdkProduct {
+    name: 'pico_binary_info'
+
+    rp.includePaths: [ 
+        'include',
+        '../pico_base/include'
     ]
+
+    rp.defines: [
+        'PICO_ON_DEVICE'
+    ]
+
+    files: [
+        'include/**/*.h',
+    ]
+
+    Export {
+        rp.defines: exportingProduct.rp.defines
+    }
 }
