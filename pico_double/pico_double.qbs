@@ -39,11 +39,16 @@ SdkProduct {
         '../hardware_divider/include'
     ]
 
-    rp.defines: [
-        //'PICO_DOUBLE_IN_RAM',
-        //'PICO_DOUBLE_PROPAGATE_NANS',
-        //'PICO_DIVIDER_DISABLE_INTERRUPTS'
-    ]
+    rp.defines: {
+        var defines = sdkDefines;
+        if (pico_double_in_ram) {
+            defines.push('PICO_DOUBLE_IN_RAM=1');
+        }
+        if (pico_double_propagate_nans) {
+            defines.push('PICO_DOUBLE_PROPAGATE_NANS=1');
+        }
+        return defines;
+    }
 
     files: [
         'include/**/*.h',
@@ -56,7 +61,8 @@ SdkProduct {
     ]
 
     Export {
-        rp.linkerFlags: [ 
+        rp.linkerFlags: [
+            '-Wl,--undefined=__wrap___aeabi_dadd',
             '-Wl,--wrap=__aeabi_dadd',
             '-Wl,--wrap=__aeabi_ddiv',
             '-Wl,--wrap=__aeabi_dmul',

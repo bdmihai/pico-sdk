@@ -35,9 +35,13 @@ SdkProduct {
         '../pico_platform/include'
     ]
 
-    rp.defines: [
-        //'PICO_INT64_OPS_IN_RAM'
-    ]
+    rp.defines: {
+        var defines = sdkDefines;
+        if (pico_int64_ops_in_ram) {
+            defines.push('PICO_INT64_OPS_IN_RAM=1');
+        }
+        return defines;
+    }
 
     files: [
         '*.S'

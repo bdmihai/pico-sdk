@@ -36,9 +36,13 @@ SdkProduct {
         '../pico_bootrom/include',
     ]
 
-    rp.defines: [
-        //'PICO_BITS_IN_RAM'
-    ]
+    rp.defines: {
+        var defines = sdkDefines;
+        if (pico_bits_in_ram) {
+            defines.push('PICO_BITS_IN_RAM=1');
+        }
+        return defines;
+    }
 
     files: [
         '*.S'
@@ -46,6 +50,7 @@ SdkProduct {
 
     Export {
         rp.linkerFlags: [ 
+            '-Wl,--undefined=__wrap___clzsi2',
             '-Wl,--wrap=__clzsi2',
             '-Wl,--wrap=__clzdi2',
             '-Wl,--wrap=__ctzsi2',

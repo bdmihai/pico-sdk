@@ -40,8 +40,4 @@ SdkProduct {
         'include/**/*.h',
         '*.c',
     ]
-
-    Export {
-        Depends { name: 'pico_base' }
-    }
 }

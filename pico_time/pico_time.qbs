@@ -41,16 +41,8 @@ SdkProduct {
         '../hardware_sync/include',
     ]
 
-    rp.defines: [
-        'PICO_ON_DEVICE'
-    ]
-
     files: [
         'include/**/*.h',
         '*.c'
     ]
-
-    Export {
-        Depends { name: 'pico_base' }
-    }
 }

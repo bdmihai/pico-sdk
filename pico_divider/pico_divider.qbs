@@ -37,12 +37,19 @@ SdkProduct {
         '../hardware_divider/include'
     ]
 
-    rp.defines: [
-        //'PICO_DIVIDER_IN_RAM',
-        //'PICO_DIVIDER_CALL_IDIV0',
-        //'PICO_DIVIDER_CALL_LDIV0'
-        //'PICO_DIVIDER_DISABLE_INTERRUPTS'
-    ]
+    rp.defines: {
+        var defines = sdkDefines;
+        if (pico_divider_in_ram) {
+            defines.push('PICO_DIVIDER_IN_RAM=1');
+        }
+        if (!pico_divider_call_idiv0) {
+            defines.push('PICO_DIVIDER_CALL_IDIV0=0');
+        }
+        if (!pico_divider_call_ldiv0) {
+            defines.push('PICO_DIVIDER_CALL_LDIV0=0');
+        }
+        return defines;
+    }
 
     files: [
         '*.S'

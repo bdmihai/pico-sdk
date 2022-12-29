@@ -41,7 +41,13 @@ SdkProduct {
         '../hardware_timer/include'
     ]
 
-    rp.defines: [ 'PICO_USE_MALLOC_MUTEX' ]
+    rp.defines: {
+        var defines = sdkDefines;
+        if (pico_use_malloc_mutex) {
+            defines.push('PICO_USE_MALLOC_MUTEX=1');
+        }
+        return defines;
+    }
 
     files: [
         'include/**/*.h',

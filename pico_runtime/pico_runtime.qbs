@@ -36,6 +36,7 @@ SdkProduct {
         '../pico_platform/include',
         '../pico_sync/include',
         '../pico_time/include',
+        '../pico_printf/include',
         '../hardware_base/include',
         '../hardware_timer/include',
         '../hardware_sync/include',

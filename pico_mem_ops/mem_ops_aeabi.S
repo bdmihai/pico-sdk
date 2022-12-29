@@ -41,7 +41,7 @@ aeabi_mem_funcs:
     .word ROM_FUNC_MEMCPY44
 aeabi_mem_funcs_end:
 
-.section .text
+.section .text.__aeabi_mem_init
 regular_func __aeabi_mem_init
     ldr r0, =aeabi_mem_funcs
     movs r1, #MEM_FUNC_COUNT

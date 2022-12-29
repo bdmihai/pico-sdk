@@ -25,24 +25,29 @@
  |                                                                            |
  |___________________________________________________________________________*/
 
-import qbs.FileInfo
+import '../sdk-product.qbs' as SdkProduct
 
-Product {
-    type: 'lib'
+SdkProduct {
+    name: 'pico_bootsel_via_double_reset'
 
-    Depends { name: 'rp' }
-    Depends { name: 'rp2040' }
+    rp.includePaths: [ 
+        '../pico_base/include',
+        '../pico_platform/include',
+        '../pico_util/include',
+        '../pico_time/include',
+        '../pico_binary_info/include',
+        '../pico_bootrom/include',
+        '../hardware_base/include',
+        '../hardware_timer/include'
+    ]
 
-    rp.defines : sdkDefines
-    
+    files: [
+        'include/**/*.h',
+        '*.c'
+    ]
+
     Export {
         Depends { name: 'rp' }
-        Depends { name: 'rp2040' }
-        Depends { name: 'pico_base' }
-        Depends { name: 'hardware_base' }
-
-        rp.includePaths: [ FileInfo.joinPaths(exportingProduct.sourceDirectory, "/include") ]
-        rp.libraryPaths: [ exportingProduct.destinationDirectory ]
-        rp.defines: exportingProduct.rp.defines
+        rp.linkerFlags: ['-Wl,--undefined=boot_double_tap_check']
     }
 }

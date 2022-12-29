@@ -26,6 +26,59 @@
  |___________________________________________________________________________*/
 
 Project {
+    id: sdk
+
+    property bool pico_no_flash: false;
+    PropertyOptions {
+        name: "pico_no_flash"
+        description: 'No flash if 1'
+    }
+
+    property bool pico_on_device: true;
+    PropertyOptions {
+        name: "pico_on_device"
+        description: 'Whether the build is targeting an RP2040 device'
+    }
+
+    property bool pico_use_malloc_mutex: true;
+    PropertyOptions {
+        name: "pico_use_malloc_mutex"
+        description: 'Whether to protect malloc etc with a mutex, type=bool, default=1 with pico_multicore, 0 otherwise, group=pico_malloc'
+    }
+
+    property bool pico_mem_in_ram: false;
+    property bool pico_int64_ops_in_ram: false;
+    property bool pico_float_in_ram: false;
+    property bool pico_float_propagate_nans: false;
+    property bool pico_double_in_ram: false;
+    property bool pico_double_propagate_nans: false;
+    property bool pico_divider_disable_interrupts: false;
+    property bool pico_divider_in_ram: false;
+    property bool pico_divider_call_idiv0: true;
+    property bool pico_divider_call_ldiv0: true;
+    property bool pico_bits_in_ram: false;
+
+    /* global sdk configuration options */
+    property stringList sdkDefines : {
+        var defines = [
+            'LIB_PICO_PRINTF_PICO=1',
+        ];
+        
+        if (pico_on_device) {
+            defines.push('PICO_ON_DEVICE=1');
+        }
+
+        if (pico_no_flash) {
+            defines.push('PICO_NO_FLASH=1');
+        }
+
+        if (pico_divider_disable_interrupts){
+            defines.push('PICO_DIVIDER_DISABLE_INTERRUPTS=1');
+        }
+
+        return defines;
+    }
+
     references: [
         'pico_base/pico_base.qbs',
         'pico_platform/pico_platform.qbs',
@@ -44,6 +97,7 @@ Project {
         'pico_double/pico_double.qbs',
         'pico_unique_id/pico_unique_id.qbs',
         'pico_binary_info/pico_binary_info.qbs',
+        'pico_bootsel_via_double_reset/pico_bootsel_via_double_reset.qbs',
         'hardware_gpio/hardware_gpio.qbs',
         'hardware_base/hardware_base.qbs',
         'hardware_irq/hardware_irq.qbs',

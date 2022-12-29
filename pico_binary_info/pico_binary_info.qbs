@@ -35,15 +35,7 @@ SdkProduct {
         '../pico_base/include'
     ]
 
-    rp.defines: [
-        'PICO_ON_DEVICE'
-    ]
-
     files: [
         'include/**/*.h',
     ]
-
-    Export {
-        rp.defines: exportingProduct.rp.defines
-    }
 }
