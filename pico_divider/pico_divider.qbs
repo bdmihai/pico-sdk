@@ -31,6 +31,7 @@ SdkProduct {
     name: 'pico_divider'
 
     rp.includePaths: [ 
+        'include',
         '../pico_base/include',
         '../pico_platform/include',
         '../hardware_base/include',

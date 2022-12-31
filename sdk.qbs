@@ -58,10 +58,17 @@ Project {
     property bool pico_divider_call_ldiv0: true;
     property bool pico_bits_in_ram: false;
 
+    property bool pico_stdout_mutex: true;
+    PropertyOptions {
+        name: "pico_stdout_mutex"
+        description: 'Enable/disable mutex around stdout, type=bool, default=1, group=pico_stdio'
+    }
+
     /* global sdk configuration options */
     property stringList sdkDefines : {
         var defines = [
             'LIB_PICO_PRINTF_PICO=1',
+            'LIB_PICO_STDIO_UART=1'
         ];
         
         if (pico_on_device) {
@@ -98,6 +105,10 @@ Project {
         'pico_unique_id/pico_unique_id.qbs',
         'pico_binary_info/pico_binary_info.qbs',
         'pico_bootsel_via_double_reset/pico_bootsel_via_double_reset.qbs',
+        'pico_stdlib/pico_stdlib.qbs',
+        'pico_stdio/pico_stdio.qbs',
+        'pico_stdio_semihosting/pico_stdio_semihosting.qbs',
+        'pico_stdio_uart/pico_stdio_uart.qbs',
         'hardware_gpio/hardware_gpio.qbs',
         'hardware_base/hardware_base.qbs',
         'hardware_irq/hardware_irq.qbs',
@@ -110,6 +121,7 @@ Project {
         'hardware_resets/hardware_resets.qbs',
         'hardware_pll/hardware_pll.qbs',
         'hardware_divider/hardware_divider.qbs',
-        'hardware_flash/hardware_flash.qbs'
+        'hardware_flash/hardware_flash.qbs',
+        'hardware_uart/hardware_uart.qbs'
     ]
 }

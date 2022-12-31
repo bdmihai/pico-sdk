@@ -21,46 +21,27 @@
  | THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                 |
  |____________________________________________________________________________|
  |                                                                            |
- |  Author: Mihai Baneu                           Last modified: 28.Dec.2022  |
+ |  Author: Mihai Baneu                           Last modified: 30.Dec.2022  |
  |                                                                            |
  |___________________________________________________________________________*/
 
 import '../sdk-product.qbs' as SdkProduct
 
 SdkProduct {
-    name: 'pico_bit_ops'
+    name: 'hardware_uart'
 
     rp.includePaths: [ 
         'include',
         '../pico_base/include',
         '../pico_platform/include',
-        '../pico_bootrom/include',
+        '../hardware_base/include',
+        '../hardware_clocks/include',
+        '../hardware_timer/include',
+        '../hardware_resets/include'
     ]
-
-    rp.defines: {
-        var defines = sdkDefines;
-        if (pico_bits_in_ram) {
-            defines.push('PICO_BITS_IN_RAM=1');
-        }
-        return defines;
-    }
 
     files: [
-        '*.S'
+        'include/**/*.h',
+        '*.c',
     ]
-
-    Export {
-        rp.linkerFlags: [ 
-            '-Wl,--undefined=__wrap___clzsi2',
-            '-Wl,--wrap=__clzsi2',
-            '-Wl,--wrap=__clzdi2',
-            '-Wl,--wrap=__ctzsi2',
-            '-Wl,--wrap=__ctzdi2',
-            '-Wl,--wrap=__popcountsi2',
-            '-Wl,--wrap=__popcountdi2',
-            '-Wl,--wrap=__clz',
-            '-Wl,--wrap=__clzl',
-            '-Wl,--wrap=__clzll'
-        ]
-    }
 }
