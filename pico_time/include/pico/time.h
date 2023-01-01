@@ -8,6 +8,7 @@
 #define _PICO_TIME_H
 
 #include "pico.h"
+#include "pico/util/datetime.h"
 #include "hardware/timer.h"
 
 #ifdef __cplusplus

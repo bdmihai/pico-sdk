@@ -8,7 +8,7 @@
 .cpu cortex-m0plus
 .thumb
 
-#include "pico/asm_helper.S"
+#include "pico/util/asm_helper.S"
 #include "pico/bootrom.h"
 
 __pre_init __aeabi_mem_init, 00001

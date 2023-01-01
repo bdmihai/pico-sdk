@@ -38,8 +38,6 @@ Product {
     Export {
         Depends { name: 'rp' }
         Depends { name: 'rp2040' }
-        Depends { name: 'pico_base' }
-        Depends { name: 'hardware_base' }
 
         rp.includePaths: [ FileInfo.joinPaths(exportingProduct.sourceDirectory, "/include") ]
         rp.libraryPaths: [ exportingProduct.destinationDirectory ]

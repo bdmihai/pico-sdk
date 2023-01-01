@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "pico/asm_helper.S"
+#include "pico/util/asm_helper.S"
 #include "pico/bootrom/sf_table.h"
 #include "hardware/divider_helper.S"
 

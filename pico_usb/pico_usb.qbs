@@ -28,16 +28,22 @@
 import '../sdk-product.qbs' as SdkProduct
 
 SdkProduct {
-    name: 'pico_platform'
+    name: 'pico_usb'
+
+    Depends { name: 'tinyusb' }
 
     rp.includePaths: [ 
         'include',
-        '../pico_base/include',
-        '../pico_platform/include',
-        '../hardware_base/include'
+        '../hardware_irq/include',
+        '../hardware_resets/include',
     ]
+
     files: [
         'include/**/*.h',
         '*.c'
     ]
+
+    Export {
+        Depends { name: 'tinyusb' }
+    }
 }

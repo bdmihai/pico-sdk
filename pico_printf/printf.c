@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "pico/platform.h"
+#include "pico.h"
 #include "pico/printf.h"
 
 // PICO_CONFIG: PICO_PRINTF_NTOA_BUFFER_SIZE, Define printf ntoa buffer size, min=0, max=128, default=32, group=pico_printf
@@ -918,7 +918,6 @@ int vfctprintf(void (*out)(char character, void *arg), void *arg, const char *fo
     return _vsnprintf(_out_fct, (char *) (uintptr_t) &out_fct_wrap, (size_t) -1, format, va);
 }
 
-#if LIB_PICO_PRINTF_PICO
 #if !PICO_PRINTF_ALWAYS_INCLUDED
 bool weak_raw_printf(const char *fmt, ...) {
     va_list va;
@@ -938,5 +937,4 @@ bool weak_raw_vprintf(const char *fmt, va_list args) {
         return false;
     }
 }
-#endif
 #endif

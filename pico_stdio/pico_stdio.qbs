@@ -32,14 +32,13 @@ SdkProduct {
 
     rp.includePaths: [ 
         'include',
-        '../pico_base/include',
-        '../pico_platform/include',
+        '../pico_util/include',
         '../pico_sync/include',
         '../pico_time/include',
         '../pico_printf/include',
         '../pico_stdio_semihosting/include',
         '../pico_stdio_uart/include',
-        '../hardware_base/include',
+        '../pico_stdio_usb/include',
         '../hardware_sync/include',
         '../hardware_timer/include',
         '../hardware_irq/include',

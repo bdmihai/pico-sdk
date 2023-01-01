@@ -8,7 +8,7 @@
 .cpu cortex-m0plus
 .thumb
 
-#include "pico/asm_helper.S"
+#include "pico/util/asm_helper.S"
 
 .macro int64_section name
 #if PICO_INT64_OPS_IN_RAM

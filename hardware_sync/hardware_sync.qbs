@@ -32,9 +32,6 @@ SdkProduct {
 
     rp.includePaths: [ 
         'include',
-        '../pico_base/include',
-        '../pico_platform/include',
-        '../hardware_base/include',
         '../hardware_claim/include'
     ]
 

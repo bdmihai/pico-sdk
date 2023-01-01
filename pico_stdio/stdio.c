@@ -10,9 +10,7 @@
 
 #include "pico.h"
 #include "pico/mutex.h"
-#if LIB_PICO_PRINTF_PICO
 #include "pico/printf.h"
-#endif
 #include "pico/stdio.h"
 #include "pico/stdio/driver.h"
 #include "pico/time.h"
@@ -240,18 +238,10 @@ int WRAPPER_FUNC(vprintf)(const char *format, va_list va) {
 #endif
     }
     int ret;
-#if LIB_PICO_PRINTF_PICO
     struct stdio_stack_buffer buffer = {.used = 0};
     ret = vfctprintf(stdio_buffered_printer, &buffer, format, va);
     stdio_stack_buffer_flush(&buffer);
     stdio_flush();
-#elif LIB_PICO_PRINTF_NONE
-    extern void printf_none_assert();
-    printf_none_assert();
-#else
-    extern int REAL_FUNC(vprintf)(const char *format, va_list va);
-    ret = REAL_FUNC(vprintf)(format, va);
-#endif
     if (serialzed) {
         stdout_serialize_end();
     }

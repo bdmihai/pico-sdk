@@ -25,28 +25,34 @@
  |                                                                            |
  |___________________________________________________________________________*/
 
-import qbs.FileInfo
+import '../sdk-product.qbs' as SdkProduct
 
-Product {
-    name: 'pico_base'
-    type: 'lib'
-    
-    Depends { name: 'rp' }
-    Depends { name: 'rp2040' }
+SdkProduct {
+    name: 'pico_stdio_usb'
+
+    Depends { name: 'tinyusb' }
 
     rp.includePaths: [ 
-        'include'
+        'include',
+        '../pico_util/include',
+        '../pico_time/include',
+        '../pico_bootrom/include',
+        '../pico_stdio/include',
+        '../pico_binary_info/include',
+        '../pico_unique_id/include',
+        '../pico_sync/include',
+        '../hardware_timer/include',
+        '../hardware_sync/include',
+        '../hardware_irq/include',
+        '../hardware_gpio/include'
     ]
 
     files: [
         'include/**/*.h',
+        '*.c'
     ]
 
     Export {
-        Depends { name: 'rp' }
-        Depends { name: 'rp2040' }
-
-        rp.includePaths: [ FileInfo.joinPaths(exportingProduct.sourceDirectory, "/include") ]
-        rp.libraryPaths: [ exportingProduct.destinationDirectory ]
+        Depends { name: 'tinyusb' }
     }
 }

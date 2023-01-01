@@ -31,8 +31,7 @@ SdkProduct {
     name: 'pico_binary_info'
 
     rp.includePaths: [ 
-        'include',
-        '../pico_base/include'
+        'include'
     ]
 
     files: [

@@ -1,4 +1,4 @@
-#include "pico/asm_helper.S"
+#include "pico/util/asm_helper.S"
 #include "hardware/regs/addressmap.h"
 #include "hardware/regs/sio.h"
 

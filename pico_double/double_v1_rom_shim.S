@@ -15,7 +15,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "pico/asm_helper.S"
+#include "pico/util/asm_helper.S"
 
 .syntax unified
 .cpu cortex-m0plus

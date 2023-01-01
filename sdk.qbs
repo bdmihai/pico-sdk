@@ -67,7 +67,6 @@ Project {
     /* global sdk configuration options */
     property stringList sdkDefines : {
         var defines = [
-            'LIB_PICO_PRINTF_PICO=1',
             'LIB_PICO_STDIO_UART=1'
         ];
         
@@ -87,8 +86,6 @@ Project {
     }
 
     references: [
-        'pico_base/pico_base.qbs',
-        'pico_platform/pico_platform.qbs',
         'pico_bootrom/pico_bootrom.qbs',
         'pico_sync/pico_sync.qbs',
         'pico_time/pico_time.qbs',
@@ -109,8 +106,9 @@ Project {
         'pico_stdio/pico_stdio.qbs',
         'pico_stdio_semihosting/pico_stdio_semihosting.qbs',
         'pico_stdio_uart/pico_stdio_uart.qbs',
+        'pico_stdio_usb/pico_stdio_usb.qbs',
+        'pico_usb/pico_usb.qbs',
         'hardware_gpio/hardware_gpio.qbs',
-        'hardware_base/hardware_base.qbs',
         'hardware_irq/hardware_irq.qbs',
         'hardware_claim/hardware_claim.qbs',
         'hardware_sync/hardware_sync.qbs',

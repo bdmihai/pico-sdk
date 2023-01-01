@@ -31,9 +31,7 @@ SdkProduct {
     name: 'pico_printf'
 
     rp.includePaths: [ 
-        'include',
-        '../pico_base/include',
-        '../pico_platform/include',
+        'include'
     ]
 
     files: [

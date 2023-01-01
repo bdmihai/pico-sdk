@@ -28,6 +28,36 @@ extern "C" {
  */
 void datetime_to_str(char *buf, uint buf_size, const datetime_t *t);
 
+/*! fn to_us_since_boot
+ * \brief convert an absolute_time_t into a number of microseconds since boot.
+ * \param t the absolute time to convert
+ * \return a number of microseconds since boot, equivalent to t
+ * \ingroup timestamp
+ */
+static inline uint64_t to_us_since_boot(absolute_time_t t) {
+#ifdef NDEBUG
+    return t;
+#else
+    return t._private_us_since_boot;
+#endif
+}
+
+/*! fn update_us_since_boot
+ * \brief update an absolute_time_t value to represent a given number of microseconds since boot
+ * \param t the absolute time value to update
+ * \param us_since_boot the number of microseconds since boot to represent. Note this should be representable
+ *                      as a signed 64 bit integer
+ * \ingroup timestamp
+ */
+static inline void update_us_since_boot(absolute_time_t *t, uint64_t us_since_boot) {
+#ifdef NDEBUG
+    *t = us_since_boot;
+#else
+    assert(us_since_boot <= INT64_MAX);
+    t->_private_us_since_boot = us_since_boot;
+#endif
+}
+
 #ifdef __cplusplus
 }
 #endif

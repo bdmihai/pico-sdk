@@ -31,10 +31,7 @@ SdkProduct {
     name: 'hardware_watchdog'
 
     rp.includePaths: [ 
-        'include',
-        '../pico_base/include',
-        '../pico_platform/include',
-        '../hardware_base/include'
+        'include'
     ]
 
     files: [

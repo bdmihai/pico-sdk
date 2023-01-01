@@ -31,8 +31,8 @@ SdkProduct {
     name: 'pico_int64_ops'
 
     rp.includePaths: [ 
-        '../pico_base/include',
-        '../pico_platform/include'
+        'include',
+        '../pico_util/include'
     ]
 
     rp.defines: {

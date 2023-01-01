@@ -30,14 +30,11 @@ import '../sdk-product.qbs' as SdkProduct
 SdkProduct {
     name: 'pico_bootsel_via_double_reset'
 
-    rp.includePaths: [ 
-        '../pico_base/include',
-        '../pico_platform/include',
+    rp.includePaths: [
         '../pico_util/include',
         '../pico_time/include',
         '../pico_binary_info/include',
         '../pico_bootrom/include',
-        '../hardware_base/include',
         '../hardware_timer/include'
     ]
 

@@ -35,10 +35,7 @@ Product {
     Depends { name: 'rp2040' }
 
     rp.includePaths: [ 
-        'include',
-        '../pico_base/include',
-        '../pico_platform/include',
-        '../hardware_base/include'
+        'include'
     ]
 
     files: [

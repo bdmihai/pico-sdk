@@ -32,8 +32,7 @@ SdkProduct {
 
     rp.includePaths: [ 
         'include',
-        '../pico_base/include',
-        '../pico_platform/include',
+        '../pico_util/include',
         '../pico_bootrom/include',
     ]
 

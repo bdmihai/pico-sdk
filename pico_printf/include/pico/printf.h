@@ -55,7 +55,6 @@ extern "C" {
 #endif
 #endif
 
-#if LIB_PICO_PRINTF_PICO
 // weak raw printf may be a puts if printf has not been called,
 // so that we can support gc of printf when it isn't called
 //
@@ -78,13 +77,6 @@ bool weak_raw_vprintf(const char *fmt, va_list args);
  * \return The number of characters that are sent to the output function, not counting the terminating null character
  */
 int vfctprintf(void (*out)(char character, void *arg), void *arg, const char *format, va_list va);
-
-#else
-
-#define weak_raw_printf(...) ({printf(__VA_ARGS__); true;})
-#define weak_raw_vprintf(fmt,va) ({vprintf(fmt,va); true;})
-
-#endif
 
 #ifdef __cplusplus
 }
