@@ -108,6 +108,7 @@ Project {
         'pico_stdio_uart/pico_stdio_uart.qbs',
         'pico_stdio_usb/pico_stdio_usb.qbs',
         'pico_usb/pico_usb.qbs',
+        'pico_multicore/pico_multicore.qbs',
         'hardware_gpio/hardware_gpio.qbs',
         'hardware_irq/hardware_irq.qbs',
         'hardware_claim/hardware_claim.qbs',
@@ -120,6 +121,7 @@ Project {
         'hardware_pll/hardware_pll.qbs',
         'hardware_divider/hardware_divider.qbs',
         'hardware_flash/hardware_flash.qbs',
-        'hardware_uart/hardware_uart.qbs'
+        'hardware_uart/hardware_uart.qbs',
+        'hardware_dma/hardware_dma.qbs'
     ]
 }

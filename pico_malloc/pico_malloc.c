@@ -19,11 +19,11 @@ extern void *__real_calloc(size_t count, size_t size);
 extern void *__real_realloc(void *mem, size_t size);
 extern void __real_free(void *mem);
 
-extern char __StackLimit; /* Set by linker.  */
+extern char __heap_end; /* Set by linker.  */
 
 static inline void check_alloc(__unused void *mem, __unused uint size) {
 #if PICO_MALLOC_PANIC
-    if (!mem || (((char *)mem) + size) > &__StackLimit) {
+    if (!mem || (((char *)mem) + size) > &__heap_end) {
         panic("Out of memory");
     }
 #endif

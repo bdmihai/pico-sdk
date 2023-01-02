@@ -26,7 +26,7 @@
 #include "pico/bootrom.h"
 #endif
 
-extern char __StackLimit; /* Set by linker.  */
+extern char __heap_end; /* Set by linker.  */
 
 uint32_t __attribute__((section(".ram_vector_table"))) ram_vector_table[48];
 
@@ -147,8 +147,8 @@ void runtime_init(void) {
 
 #if PICO_USE_STACK_GUARDS
     // install core0 stack guard
-    extern char __StackBottom;
-    runtime_install_stack_guard(&__StackBottom);
+    extern char __stack0_bottom;
+    runtime_install_stack_guard(&__stack0_bottom);
 #endif
 
     spin_locks_reset();
@@ -180,23 +180,23 @@ void __attribute__((noreturn)) _exit(__unused int status) {
 }
 
 void *_sbrk(int incr) {
-    extern char end; /* Set by linker.  */
+    extern char __heap_start; /* Set by linker.  */
     static char *heap_end;
     char *prev_heap_end;
 
     if (heap_end == 0)
-        heap_end = &end;
+        heap_end = &__heap_start;
 
     prev_heap_end = heap_end;
     char *next_heap_end = heap_end + incr;
 
-    if (__builtin_expect(next_heap_end > (&__StackLimit), false)) {
+    if (__builtin_expect(next_heap_end > (&__heap_end), false)) {
 #if PICO_USE_OPTIMISTIC_SBRK
-        if (heap_end == &__StackLimit) {
+        if (heap_end == &__heap_end) {
 //        errno = ENOMEM;
             return (char *) -1;
         }
-        next_heap_end = &__StackLimit;
+        next_heap_end = &__heap_end;
 #else
         return (char *) -1;
 #endif
