@@ -136,6 +136,8 @@ Project {
         'hardware_flash/hardware_flash.qbs',
         'hardware_uart/hardware_uart.qbs',
         'hardware_dma/hardware_dma.qbs',
-        'hardware_interp/hardware_interp.qbs'
+        'hardware_interp/hardware_interp.qbs',
+        'hardware_rtc/hardware_rtc.qbs',
+        'hardware_adc/hardware_adc.qbs'
     ]
 }

@@ -48,10 +48,9 @@ float_section WRAPPER_FUNC_NAME(\func)
 #endif
 .endm
 
-.section .text
-
 #if PICO_FLOAT_PROPAGATE_NANS
-.thumb_func
+float_section __check_nan_f1
+regular_func __check_nan_f1
 __check_nan_f1:
    movs r3, #1
    lsls r3, #24
@@ -62,7 +61,8 @@ __check_nan_f1:
 1:
    bx ip
 
-.thumb_func
+float_section __check_nan_f2
+regular_func __check_nan_f2
 __check_nan_f2:
    movs r3, #1
    lsls r3, #24

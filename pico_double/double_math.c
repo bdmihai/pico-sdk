@@ -169,6 +169,7 @@ static inline int dispo2(double x) {
 
 static inline double dnan_or(double x) {
 #if PICO_DOUBLE_PROPAGATE_NANS
+    (void) x;
     return NAN;
 #else
     return x;

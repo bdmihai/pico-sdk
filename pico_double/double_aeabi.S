@@ -44,10 +44,9 @@ __pre_init __aeabi_double_init, 00020
 #endif
 .endm
 
-.section .text
-
 #if PICO_DOUBLE_PROPAGATE_NANS
-.thumb_func
+double_section __check_nan_d1
+regular_func __check_nan_d1
 __check_nan_d1:
    movs r3, #1
    lsls r3, #21
@@ -58,7 +57,8 @@ __check_nan_d1:
 1:
    bx ip
 
-.thumb_func
+double_section __check_nan_d2
+regular_func __check_nan_d2
 __check_nan_d2:
    push {r0, r2}
    movs r2, #1

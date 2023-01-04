@@ -166,6 +166,7 @@ static inline int fispo2(float x) {
 
 static inline float fnan_or(float x) {
 #if PICO_FLOAT_PROPAGATE_NANS
+    (void) x;
     return NANF;
 #else
     return x;
