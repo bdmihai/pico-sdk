@@ -21,31 +21,23 @@
  | THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                 |
  |____________________________________________________________________________|
  |                                                                            |
- |  Author: Mihai Baneu                           Last modified: 28.Dec.2022  |
+ |  Author: Mihai Baneu                           Last modified: 16.Dec.2022  |
  |                                                                            |
  |___________________________________________________________________________*/
 
 import '../sdk-product.qbs' as SdkProduct
 
 SdkProduct {
-    name: 'pico_int64_ops'
+    name: 'hardware_interp'
 
     rp.includePaths: [ 
         'include',
-        '../pico_util/include'
+        '../hardware_sync/include',
+        '../hardware_claim/include'
     ]
-
-    rp.defines: sdkProductDefines.uniqueConcat([
-        'PICO_INT64_OPS_IN_RAM=1'
-    ])
 
     files: [
-        '*.S'
+        'include/**/*.h',
+        '*.c',
     ]
-
-    Export {
-        rp.linkerFlags: [ 
-            '-Wl,--wrap=__aeabi_lmul'
-        ]
-    }
 }

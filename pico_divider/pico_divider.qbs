@@ -36,19 +36,9 @@ SdkProduct {
         '../hardware_divider/include'
     ]
 
-    rp.defines: {
-        var defines = sdkDefines;
-        if (pico_divider_in_ram) {
-            defines.push('PICO_DIVIDER_IN_RAM=1');
-        }
-        if (!pico_divider_call_idiv0) {
-            defines.push('PICO_DIVIDER_CALL_IDIV0=0');
-        }
-        if (!pico_divider_call_ldiv0) {
-            defines.push('PICO_DIVIDER_CALL_LDIV0=0');
-        }
-        return defines;
-    }
+    rp.defines: sdkProductDefines.uniqueConcat([
+        'PICO_DIVIDER_IN_RAM=1'
+    ])
 
     files: [
         '*.S'

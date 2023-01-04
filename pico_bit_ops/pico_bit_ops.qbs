@@ -36,13 +36,9 @@ SdkProduct {
         '../pico_bootrom/include',
     ]
 
-    rp.defines: {
-        var defines = sdkDefines;
-        if (pico_bits_in_ram) {
-            defines.push('PICO_BITS_IN_RAM=1');
-        }
-        return defines;
-    }
+    rp.defines: sdkProductDefines.uniqueConcat([
+        'PICO_BITS_IN_RAM=1'
+    ])
 
     files: [
         '*.S'

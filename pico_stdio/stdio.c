@@ -15,15 +15,15 @@
 #include "pico/stdio/driver.h"
 #include "pico/time.h"
 
-#if LIB_PICO_STDIO_UART
+#if PICO_STDIO_UART
 #include "pico/stdio_uart.h"
 #endif
 
-#if LIB_PICO_STDIO_USB
+#if PICO_STDIO_USB
 #include "pico/stdio_usb.h"
 #endif
 
-#if LIB_PICO_STDIO_SEMIHOSTING
+#if PICO_STDIO_SEMIHOSTING
 #include "pico/stdio_semihosting.h"
 #endif
 
@@ -260,15 +260,15 @@ int __printflike(1, 0) WRAPPER_FUNC(printf)(const char* format, ...)
 void stdio_init_all(void) {
     // todo add explicit custom, or registered although you can call stdio_enable_driver explicitly anyway
     // These are well known ones
-#if LIB_PICO_STDIO_UART
+#if PICO_STDIO_UART
     stdio_uart_init();
 #endif
 
-#if LIB_PICO_STDIO_SEMIHOSTING
+#if PICO_STDIO_SEMIHOSTING
     stdio_semihosting_init();
 #endif
 
-#if LIB_PICO_STDIO_USB
+#if PICO_STDIO_USB
     stdio_usb_init();
 #endif
 }

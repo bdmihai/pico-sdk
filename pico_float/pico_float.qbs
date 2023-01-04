@@ -37,16 +37,10 @@ SdkProduct {
         '../hardware_divider/include'
     ]
 
-    rp.defines: {
-        var defines = sdkDefines;
-        if (pico_float_in_ram) {
-            defines.push('PICO_FLOAT_IN_RAM=1');
-        }
-        if (pico_float_propagate_nans) {
-            defines.push('PICO_FLOAT_PROPAGATE_NANS=1');
-        }
-        return defines;
-    }
+    rp.defines: sdkProductDefines.uniqueConcat([
+        'PICO_FLOAT_IN_RAM=1',
+        'PICO_FLOAT_PROPAGATE_NANS=1'
+    ])
 
     files: [
         'include/**/*.h',

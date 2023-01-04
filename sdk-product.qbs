@@ -33,7 +33,12 @@ Product {
     Depends { name: 'rp' }
     Depends { name: 'rp2040' }
 
-    rp.defines : sdkDefines
+    /* global sdk configuration options */
+    property stringList sdkProductDefines : {
+        return sdkDefines.uniqueConcat(projectDefines);
+    }
+
+    rp.defines: sdkProductDefines
     
     Export {
         Depends { name: 'rp' }

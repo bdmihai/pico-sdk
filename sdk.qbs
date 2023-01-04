@@ -40,35 +40,36 @@ Project {
         description: 'Whether the build is targeting an RP2040 device'
     }
 
-    property bool pico_use_malloc_mutex: true;
+    property bool pico_stdio_uart: true;
     PropertyOptions {
-        name: "pico_use_malloc_mutex"
-        description: 'Whether to protect malloc etc with a mutex, type=bool, default=1 with pico_multicore, 0 otherwise, group=pico_malloc'
+        name: "pico_stdio_uart"
+        description: 'Use uart for printf'
     }
 
-    property bool pico_mem_in_ram: false;
-    property bool pico_int64_ops_in_ram: false;
-    property bool pico_float_in_ram: false;
-    property bool pico_float_propagate_nans: false;
-    property bool pico_double_in_ram: false;
-    property bool pico_double_propagate_nans: false;
-    property bool pico_divider_disable_interrupts: false;
-    property bool pico_divider_in_ram: false;
-    property bool pico_divider_call_idiv0: true;
-    property bool pico_divider_call_ldiv0: true;
-    property bool pico_bits_in_ram: false;
-
-    property bool pico_stdout_mutex: true;
+    property bool pico_stdio_semihosting: false;
     PropertyOptions {
-        name: "pico_stdout_mutex"
-        description: 'Enable/disable mutex around stdout, type=bool, default=1, group=pico_stdio'
+        name: "pico_stdio_semihosting"
+        description: 'Use semihosting for printf'
+    }
+
+    property bool pico_stdio_usb: false;
+    PropertyOptions {
+        name: "pico_stdio_usb"
+        description: 'Use usb for printf'
+    }
+
+    property bool pico_divider_disable_interrupts: true;
+    PropertyOptions {
+        name: "pico_divider_disable_interrupts"
+        description: 'Disable interupts while the hardware divider is performing a calculation'
     }
 
     /* global sdk configuration options */
+    property stringList projectDefines : []
+
+    /* global sdk configuration options */
     property stringList sdkDefines : {
-        var defines = [
-            'LIB_PICO_STDIO_UART=1'
-        ];
+        var defines = [];
         
         if (pico_on_device) {
             defines.push('PICO_ON_DEVICE=1');
@@ -78,7 +79,19 @@ Project {
             defines.push('PICO_NO_FLASH=1');
         }
 
-        if (pico_divider_disable_interrupts){
+        if (pico_stdio_uart) {
+            defines.push('PICO_STDIO_UART=1');
+        }
+
+        if (pico_stdio_semihosting) {
+            defines.push('PICO_STDIO_SEMIHOSTING=1');
+        }
+
+        if (pico_stdio_usb) {
+            defines.push('PICO_STDIO_USB=1');
+        }
+
+        if (pico_divider_disable_interrupts) {
             defines.push('PICO_DIVIDER_DISABLE_INTERRUPTS=1');
         }
 
@@ -122,6 +135,7 @@ Project {
         'hardware_divider/hardware_divider.qbs',
         'hardware_flash/hardware_flash.qbs',
         'hardware_uart/hardware_uart.qbs',
-        'hardware_dma/hardware_dma.qbs'
+        'hardware_dma/hardware_dma.qbs',
+        'hardware_interp/hardware_interp.qbs'
     ]
 }

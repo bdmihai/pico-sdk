@@ -32,19 +32,12 @@ SdkProduct {
 
     rp.includePaths: [ 
         'include',
+        '../pico_util/include',
         '../pico_sync/include',
         '../pico_time/include',
         '../hardware_sync/include',
         '../hardware_timer/include'
     ]
-
-    rp.defines: {
-        var defines = sdkDefines;
-        if (pico_use_malloc_mutex) {
-            defines.push('PICO_USE_MALLOC_MUTEX=1');
-        }
-        return defines;
-    }
 
     files: [
         'include/**/*.h',

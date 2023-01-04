@@ -45,14 +45,6 @@ SdkProduct {
         '../hardware_uart/include'
     ]
 
-    rp.defines: {
-        var defines = sdkDefines;
-        if (!pico_stdout_mutex) {
-            defines.push('PICO_STDOUT_MUTEX=0');
-        }
-        return defines;
-    }
-
     files: [
         'include/**/*.h',
         '*.c'

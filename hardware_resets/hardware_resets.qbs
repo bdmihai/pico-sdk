@@ -27,26 +27,16 @@
 
 import qbs.FileInfo
 
-Product {
+import '../sdk-product.qbs' as SdkProduct
+
+SdkProduct {
     name: 'hardware_resets'
-    type: 'lib'
-    
-    Depends { name: 'rp' }
-    Depends { name: 'rp2040' }
 
     rp.includePaths: [ 
         'include'
     ]
 
     files: [
-        'include/**/*.h',
+        'include/**/*.h'
     ]
-
-    Export {
-        Depends { name: 'rp' }
-        Depends { name: 'rp2040' }
-
-        rp.includePaths: [ FileInfo.joinPaths(exportingProduct.sourceDirectory, "/include") ]
-        rp.libraryPaths: [ exportingProduct.destinationDirectory ]
-    }
 }
