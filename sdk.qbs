@@ -120,7 +120,6 @@ Project {
         'pico_stdio_semihosting/pico_stdio_semihosting.qbs',
         'pico_stdio_uart/pico_stdio_uart.qbs',
         'pico_stdio_usb/pico_stdio_usb.qbs',
-        'pico_usb/pico_usb.qbs',
         'pico_multicore/pico_multicore.qbs',
         'hardware_gpio/hardware_gpio.qbs',
         'hardware_irq/hardware_irq.qbs',
@@ -138,6 +137,8 @@ Project {
         'hardware_dma/hardware_dma.qbs',
         'hardware_interp/hardware_interp.qbs',
         'hardware_rtc/hardware_rtc.qbs',
-        'hardware_adc/hardware_adc.qbs'
+        'hardware_adc/hardware_adc.qbs',
+        'hardware_vreg/hardware_vreg.qbs',
+        'hardware_pwm/hardware_pwm.qbs'
     ]
 }
