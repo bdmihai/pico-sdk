@@ -139,6 +139,10 @@ Project {
         'hardware_rtc/hardware_rtc.qbs',
         'hardware_adc/hardware_adc.qbs',
         'hardware_vreg/hardware_vreg.qbs',
-        'hardware_pwm/hardware_pwm.qbs'
+        'hardware_pwm/hardware_pwm.qbs',
+        'hardware_exception/hardware_exception.qbs',
+        'hardware_i2c/hardware_i2c.qbs',
+        'hardware_spi/hardware_spi.qbs',
+        'hardware_pio/hardware_pio.qbs'
     ]
 }
