@@ -48,9 +48,10 @@ float_section WRAPPER_FUNC_NAME(\func)
 #endif
 .endm
 
+.section .text
+
 #if PICO_FLOAT_PROPAGATE_NANS
-float_section __check_nan_f1
-regular_func __check_nan_f1
+.thumb_func
 __check_nan_f1:
    movs r3, #1
    lsls r3, #24
@@ -61,8 +62,7 @@ __check_nan_f1:
 1:
    bx ip
 
-float_section __check_nan_f2
-regular_func __check_nan_f2
+.thumb_func
 __check_nan_f2:
    movs r3, #1
    lsls r3, #24
@@ -582,7 +582,7 @@ wrapper_func __aeabi_f2d
 #endif
     shimmable_table_tail_call SF_TABLE_FLOAT2DOUBLE float2double_shim
 
-float_wrapper_section srqtf
+float_wrapper_section sqrtf
 wrapper_func_f1 sqrtf
 #if PICO_FLOAT_SUPPORT_ROM_V1 && PICO_RP2040_B0_SUPPORTED
     // check for negative

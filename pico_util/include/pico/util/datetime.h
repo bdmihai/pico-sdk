@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#ifndef _PICO_DATETIME_H
-#define _PICO_DATETIME_H
+#ifndef _PICO_UTIL_DATETIME_H
+#define _PICO_UTIL_DATETIME_H
 
 #include "pico.h"
 
@@ -56,6 +56,18 @@ static inline void update_us_since_boot(absolute_time_t *t, uint64_t us_since_bo
     assert(us_since_boot <= INT64_MAX);
     t->_private_us_since_boot = us_since_boot;
 #endif
+}
+
+/*! fn from_us_since_boot
+ * \brief convert a number of microseconds since boot to an absolute_time_t
+ * \param us_since_boot number of microseconds since boot
+ * \return an absolute time equivalent to us_since_boot
+ * \ingroup timestamp
+ */
+static inline absolute_time_t from_us_since_boot(uint64_t us_since_boot) {
+    absolute_time_t t;
+    update_us_since_boot(&t, us_since_boot);
+    return t;
 }
 
 #ifdef __cplusplus
