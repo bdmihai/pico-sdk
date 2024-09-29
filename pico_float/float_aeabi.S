@@ -48,9 +48,9 @@ float_section WRAPPER_FUNC_NAME(\func)
 #endif
 .endm
 
-.section .text
-
 #if PICO_FLOAT_PROPAGATE_NANS
+float_wrapper_section __check_nan
+
 .thumb_func
 __check_nan_f1:
    movs r3, #1

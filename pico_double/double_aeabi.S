@@ -44,7 +44,7 @@ __pre_init __aeabi_double_init, 00020
 #endif
 .endm
 
-.section .text
+double_section __check_nan
 
 #if PICO_DOUBLE_PROPAGATE_NANS
 .thumb_func
